@@ -39,4 +39,6 @@ h1, h2 {
     box-shadow: none;
 }
 
-
+.top-margin {
+    margin-top: 25px;
+}

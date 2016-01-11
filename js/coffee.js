@@ -23,6 +23,12 @@ $(document).ready(function(){
             seconds = 0;
         }
     });
+
+    $("button#btnTop").on("click", function(){
+        // TODO: Make swither forhide/show
+        // $(this).next().hide(100);
+    });
+
 });
 
 function showLoading(){
