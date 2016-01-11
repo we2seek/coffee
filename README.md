@@ -1,2 +1,2 @@
-# coffee
-Small site just for mesure without coffee time in our office when it happens.
+# without coffee
+Small site just for measure spent without coffee time in our office
