@@ -1,34 +1,36 @@
 var timer,
     timerId = 0,
-    seconds = 0,
+    millis = 0,
     tableHistory,
-    tableTop;
+    tableTop,
+    startDate = 0,
+    endDate = 0;
 
 $(document).ready(function(){
     timer = $("#timerText");
     tableHistory = $("#history>tbody");
     tableTop = $("#top>tbody");
-	makeRequest(seconds);
+	makeRequest(millis);
 
     $("button#btnStart").on("click", function(){
         var buttonText = $(this).html();
 
         if (buttonText === "Start") {
             $(this).html("Stop");
+            startDate = +new Date();
             timerId = setInterval(changeText, 100);
         } else {
             $(this).html("Start");
             window.clearInterval(timerId);
-            makeRequest(seconds);
-            seconds = 0;
+            makeRequest(millis);
+            millis = 0;
         }
     });
 
     $("button#btnTop").on("click", function(){
-        // TODO: Make swither forhide/show
+        // TODO: Make switcher for hide/show
         // $(this).next().hide(100);
     });
-
 });
 
 function showLoading(){
@@ -46,17 +48,17 @@ function makeRequest(seconds){
         url: "php/coffee.php",
         method: "post",
         dataType: "json",
-        data: {timer: seconds},
+        data: {timer: millis},
         success: function(data){
             var html = "No data available...";
             data.records.forEach(function(item, i){
-                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["seconds"])  + "</td></tr>";
+                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["millis"])  + "</td></tr>";
             });
             tableHistory.html(html);
 
             html = "No data available...";
             data.top.forEach(function(item, i){
-                html += "<tr><td>" + item["date"] + "</td><td>" + secToHHMMSS(item["seconds"]) + "</td></tr>";
+                html += "<tr><td>" + item["date"] + "</td><td>" + secToHHMMSS(item["millis"]) + "</td></tr>";
             });
             tableTop.html(html);
         },
@@ -69,18 +71,24 @@ function makeRequest(seconds){
 }
 
 function changeText(){
-    seconds++;
-    timer.html(secToHHMMSS(seconds, true));
+    endDate = +new Date();
+    millis = endDate - startDate;
+    timer.html(secToHHMMSS(millis, true));
 }
 
-function secToHHMMSS(seconds, animate){
-    var msec = parseInt(seconds, 10);
-    var sec = Math.floor(msec / 10);
-
+function secToHHMMSS(milliseconds, animate){
+    var millis = parseInt(milliseconds, 10);
+    var sec = millis / 1000;
     var hh = Math.floor(sec / 3600);
     var mm = Math.floor((sec - hh * 3600) / 60);
     var ss = Math.floor(sec - hh * 3600 - mm * 60);
-    var zz =  msec - hh * 36000 - mm * 600 - ss * 10;
+
+    /*console.log('millis: ' + millis);
+    console.log('sec: ' + sec);
+    console.log('hh: ' + hh);
+    console.log('mm: ' + mm);
+    console.log('ss: ' + ss);
+    console.log('---------------------------------------');*/
 
     if (animate === true) {
         var delimiter = (ss % 2 === 0) ? ":" : " ";
@@ -100,5 +108,5 @@ function secToHHMMSS(seconds, animate){
         ss = '0' + ss;
     }
 
-    return hh + delimiter + mm + delimiter + ss + "." + zz;
+    return hh + delimiter + mm + delimiter + ss;
 }
