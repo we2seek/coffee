@@ -1,0 +1,42 @@
+h1, h2 {
+	text-align: center;
+}
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline: 0 none;
+}
+
+.btn.outline {
+    width: 50%;
+    border: 2px solid #33a6cc;
+    color: #0099cc;
+    background: none;
+    margin: 0 auto;
+}
+
+.btn-primary.outline {
+    border: 2px solid white;
+    color: #0099cc;
+    width: 100%;
+    background: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.btn-primary.outline:hover{
+	border: 2px solid #33a6cc;
+    color: #33a6cc;
+}
+
+.btn-primary.outline:active{
+    border: 2px solid #33a6cc;
+    color: #33a6cc;
+    background: none;
+    box-shadow: none;
+}
+
+

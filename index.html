@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Without Coffee</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/coffee.css">
+</head>
+<body>
+	<div class="container">
+		<div id="row">
+			<div class="col-md-offset-4 col-md-4">
+				<h2>Without Coffee</h2>
+				<h1 id="timerText">00:00:00.0</h1>
+				<button id="btnStart" class="btn btn-primary btn-lg outline" type="button">Start</button>
+			</div>
+		</div>
+
+		<div id="row">
+			
+			<div class="col-md-offset-2 col-md-4">
+				<button class="btn outline" type="button">Top results</button>
+				<table class="table" id="top">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Time</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="col-md-4">
+				<button class="btn outline" type="button">Last 10</button>
+				<table class="table" id="history">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Time</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/coffee.js"></script>
+</body>
+</html>
